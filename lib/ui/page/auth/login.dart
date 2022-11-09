@@ -15,8 +15,17 @@ class Login extends StatelessWidget {
     return Scaffold(
       body: Obx(() {
         return Container(
-          color: Colors.blue,
           padding: BaseTheme.marginRectangularLarge,
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.blue,
+                Colors.white,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
           child: Column(
             children: [
               Expanded(
@@ -44,21 +53,22 @@ class Login extends StatelessWidget {
               ),
               Expanded(child: Container()),
               TextButton(
-                onPressed: () {
-                  if (authController.authState.value == BaseApi.login) {
-                    authController.authState.value = BaseApi.register;
-                  } else {
-                    authController.authState.value = BaseApi.login;
-                  }
-                  if (kDebugMode) {
-                    print(authController.authState.value);
-                  }
-                },
+                onPressed: changeState,
                 child: Text(
                   authController.authState.value == BaseApi.login
                       ? 'Dont have account? Register!'
                       : 'Already have account? Login!',
-                  style: const TextStyle(color: Colors.white),
+                  style: const TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                        offset: Offset(1, 1),
+                        blurRadius: 2,
+                        color: Colors.white,
+                      )
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -70,28 +80,40 @@ class Login extends StatelessWidget {
         );
       }),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if (Get.focusScope != null) {
-            if (Get.focusScope!.hasPrimaryFocus) {
-              Get.focusScope!.unfocus();
-            }
-          }
-          if (kDebugMode) {
-            print(authController.email.value);
-            print(authController.password.value);
-          }
-          if (authController.email.isNotEmpty &&
-              authController.password.isNotEmpty) {
-            authController.auth(
-              authController.email.value,
-              authController.password.value,
-              authController.authState.value,
-            );
-          }
-        },
+        onPressed: login,
         child: const Icon(Icons.login),
       ),
     );
+  }
+
+  void login() {
+    if (Get.focusScope != null) {
+      if (Get.focusScope!.hasPrimaryFocus) {
+        Get.focusScope!.unfocus();
+      }
+    }
+    if (kDebugMode) {
+      print(authController.email.value);
+      print(authController.password.value);
+    }
+    if (authController.email.isNotEmpty && authController.password.isNotEmpty) {
+      authController.auth(
+        authController.email.value,
+        authController.password.value,
+        authController.authState.value,
+      );
+    }
+  }
+
+  void changeState() {
+    if (authController.authState.value == BaseApi.login) {
+      authController.authState.value = BaseApi.register;
+    } else {
+      authController.authState.value = BaseApi.login;
+    }
+    if (kDebugMode) {
+      print(authController.authState.value);
+    }
   }
 
   Widget text(String text) {

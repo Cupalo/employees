@@ -19,12 +19,12 @@ class FormWidget extends StatelessWidget {
       return Container(
         padding: BaseTheme.marginAll,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(16),
           color: Colors.white,
           boxShadow: const [
             BoxShadow(
               offset: Offset(1, 1),
-              color: Colors.grey,
+              color: Colors.blue,
               blurRadius: 1,
               spreadRadius: 1,
             )

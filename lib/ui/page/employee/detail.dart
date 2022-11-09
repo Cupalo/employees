@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class Detail extends StatelessWidget {
   Detail({Key? key, required this.id}) : super(key: key);
   final int id;
-  final DataController dataController = Get.find();
+  final DataController dataController = Get.put(DataController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,52 +22,60 @@ class Detail extends StatelessWidget {
             );
           } else {
             if (snapshot.hasData) {
-              return SizedBox(
+              return Container(
                 width: Get.width,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.blue,
+                      Colors.white,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
                 child: Column(
                   children: [
                     Expanded(
-                      child: Container(
-                        width: Get.width,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          boxShadow: [
-                            BoxShadow(
-                              offset: Offset(1, 1),
-                              color: Colors.grey,
-                              blurRadius: 1,
-                              spreadRadius: 1,
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CircleAvatar(
-                              radius: 120,
-                              foregroundImage:
-                                  NetworkImage(snapshot.data!.avatar ?? ''),
-                              child: Text(
-                                snapshot.data!.firstName == null
-                                    ? ''
-                                    : snapshot.data!.firstName!.substring(0, 1),
-                                style: const TextStyle(
-                                  fontSize: 120,
-                                ),
-                              ),
-                              onForegroundImageError: (exception, stackTrace) {
-                                throw exception;
-                              },
-                            ),
-                            Text(
-                              '${snapshot.data!.firstName ?? ''} ${snapshot.data!.lastName ?? ''}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: BaseTheme.fontSizeVeryLarge,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            height: 120,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              boxShadow: const [
+                                BoxShadow(
+                                  offset: Offset(2, 2),
+                                  color: Colors.blue,
+                                  blurRadius: 2,
+                                  spreadRadius: 2,
+                                )
+                              ],
+                              image: DecorationImage(
+                                image:
+                                    NetworkImage(snapshot.data!.avatar ?? ''),
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          Text(
+                            '${snapshot.data!.firstName ?? ''} ${snapshot.data!.lastName ?? ''}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
+                              shadows: [
+                                Shadow(
+                                  offset: Offset(2, 2),
+                                  blurRadius: 2,
+                                  color: Colors.blue,
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Expanded(
@@ -103,11 +111,11 @@ class Detail extends StatelessWidget {
       width: Get.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.blue,
+        color: Colors.white,
         boxShadow: const [
           BoxShadow(
             offset: Offset(1, 1),
-            color: Colors.grey,
+            color: Colors.blue,
             blurRadius: 1,
             spreadRadius: 1,
           ),
@@ -133,8 +141,8 @@ class Detail extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        color: Colors.white,
-      ),
+          // color: Colors.white,
+          ),
     );
   }
 }

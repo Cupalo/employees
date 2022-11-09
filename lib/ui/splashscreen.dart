@@ -20,8 +20,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       appBar: BaseTheme.appBar('splash'),
       body: Container(
-        height: Get.height,
-        width: Get.width,
+        width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [

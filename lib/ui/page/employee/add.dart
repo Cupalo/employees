@@ -19,23 +19,41 @@ class AddEmployee extends StatelessWidget {
       appBar: BaseTheme.appBar(DataController.add),
       body: Container(
         padding: BaseTheme.marginRectangularLarge,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue,
+              Colors.white,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: Column(
           children: [
             Expanded(
               flex: 2,
               child: Container(),
             ),
-            const CircleAvatar(
-              radius: 100,
-              backgroundColor: Colors.blue,
-              child: Icon(
-                Icons.photo_camera,
-                size: 40,
+            Container(
+              height: 120,
+              width: 120,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
                 color: Colors.white,
+                boxShadow: const [
+                  BoxShadow(
+                    offset: Offset(2, 2),
+                    color: Colors.blue,
+                    blurRadius: 2,
+                    spreadRadius: 2,
+                  )
+                ],
               ),
-              // child: text(
-              //   id == null ? DataController.add : DataController.edit,
-              // ),
+              child: const Icon(
+                Icons.person,
+                size: 40,
+              ),
             ),
             Expanded(child: Container()),
             FormWidget(
@@ -48,7 +66,7 @@ class AddEmployee extends StatelessWidget {
               rxString: dataController.job,
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(),
             ),
           ],

@@ -8,17 +8,11 @@ class AuthController extends GetxController {
   GetStorage storage = GetStorage();
   var isLogin = false.obs;
 
-  var authState = 'Login'.obs;
+  var authState = 'login'.obs;
 
   var email = ''.obs;
   var password = ''.obs;
   var userToken = ''.obs;
-
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   checkToken();
-  // }
 
   void checkToken() {
     if (storage.read('token') != null) {
@@ -48,6 +42,7 @@ class AuthController extends GetxController {
     isLogin.value = false;
     storage.remove('token');
     userToken.value = '';
+    authState.value = 'login';
     Get.offAll(Login());
   }
 }
