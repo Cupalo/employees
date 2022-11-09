@@ -8,7 +8,7 @@ import 'package:employees/default/theme.dart';
 
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
-  final dataController = Get.put(DataController());
+  final DataController dataController = Get.put(DataController());
   final AuthController authController = Get.find();
 
   @override

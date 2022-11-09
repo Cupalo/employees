@@ -100,6 +100,15 @@ class Login extends StatelessWidget {
       style: const TextStyle(
         color: Colors.white,
         fontSize: 60,
+        fontStyle: FontStyle.italic,
+        fontWeight: FontWeight.bold,
+        shadows: [
+          Shadow(
+            offset: Offset(4, 4),
+            blurRadius: 4,
+            color: Colors.blue,
+          )
+        ],
       ),
     );
   }

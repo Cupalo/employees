@@ -19,14 +19,49 @@ class SplashScreen extends StatelessWidget {
     );
     return Scaffold(
       appBar: BaseTheme.appBar('splash'),
-      body: SizedBox(
+      body: Container(
         height: Get.height,
         width: Get.width,
-        child: const Center(
-          // child: Image(
-          //   image: AssetImage('assets/Logo.png'),
-          // ),
-          child: Text('EMPLOYEES'),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blue,
+              Colors.white,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Icon(
+              Icons.people_outline,
+              size: 120,
+              shadows: [
+                Shadow(
+                  offset: Offset(4, 4),
+                  blurRadius: 4,
+                  color: Colors.white,
+                )
+              ],
+            ),
+            Text(
+              'Employees',
+              style: TextStyle(
+                fontSize: 60,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    offset: Offset(4, 4),
+                    blurRadius: 4,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

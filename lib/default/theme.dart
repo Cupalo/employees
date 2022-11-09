@@ -55,6 +55,15 @@ class BaseTheme {
           color: textColor,
           fontWeight: title == 'EMPLOYEES' ? FontWeight.bold : null,
           fontSize: title == 'EMPLOYEES' ? 30 : null,
+          shadows: title == 'EMPLOYEES'
+              ? const [
+                  Shadow(
+                    offset: Offset(2, 2),
+                    blurRadius: 2,
+                    color: Colors.lightBlueAccent,
+                  )
+                ]
+              : null,
         ),
       ),
       actions: actions,

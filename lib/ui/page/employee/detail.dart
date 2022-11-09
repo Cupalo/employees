@@ -51,8 +51,8 @@ class Detail extends StatelessWidget {
                                 snapshot.data!.firstName == null
                                     ? ''
                                     : snapshot.data!.firstName!.substring(0, 1),
-                                style: TextStyle(
-                                  fontSize: BaseTheme.fontSizeLarge,
+                                style: const TextStyle(
+                                  fontSize: 120,
                                 ),
                               ),
                               onForegroundImageError: (exception, stackTrace) {

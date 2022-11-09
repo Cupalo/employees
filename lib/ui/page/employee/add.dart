@@ -11,7 +11,7 @@ class AddEmployee extends StatelessWidget {
     this.id,
   }) : super(key: key);
   final int? id;
-  final DataController dataController = Get.find();
+  final DataController dataController = Get.put(DataController());
 
   @override
   Widget build(BuildContext context) {
